@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Some cool messages{% endblock %}</h1>
+{% endblock %}
+
+{% if random_messages %}
+{{random_messages}}
+{% endif %}

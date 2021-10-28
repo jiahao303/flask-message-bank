@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Submit{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="message">Your message:</label>
+    <br>
+    <input name="message" id="message"> 
+    <br>
+    <label for="handle">Your name or handle:</label>
+    <br>
+    <input name="handle" id="handle"> 
+    <br>
+    <input type="submit" value="Submit message">
+  </form>
+
+  <!--
+  {% if thanks %}
+    Thanks for submitting a file!
+  {% endif %}
+
+  {% if digit %}
+    <br>
+    Thanks for the image!  It looks like a {{digit}}.
+    <br>
+    <img src="{{ image }}", alt="an 8x8 visualization of the supplied digit."/>
+  {% endif %}
+
+  {% if error %}
+    <br>
+    Oh no, we couldn't use that file!  Please upload an 8x8 numpy array as a text file.
+  {% endif %}
+{% endblock %}
+  -->
