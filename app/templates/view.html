@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Some cool messages{% endblock %}</h1>
+  <h1>{% block title %}View messages{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
   {% if random_messages %}
     {% for tuple in random_messages %}
     <br>
-    {{tuple[2]}}
+    "{{tuple[2]}}"
     <br>
     - <i>{{tuple[1]}}</i>
     <br>
