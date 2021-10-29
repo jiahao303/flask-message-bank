@@ -14,14 +14,17 @@ def insert_message(request):
     message = request.form["message"]
     handle = request.form["handle"]
     cursor = get_message_db().cursor()
-    number_of_rows = cursor.execute("SELECT COUNT(*) FROM messages")
-    cursor.execute("INSERT INTO messages(id, handle, message) VALUES(" + str(number_of_rows + 1) + ", " + handle + ", " + message + ")")
+    cursor.execute("SELECT COUNT(*) FROM messages")
+    number_of_rows = cursor.fetchone()
+    cursor.execute("INSERT INTO messages(id, handle, message) VALUES(" + str(number_of_rows[0] + 1) + ", \"" + handle + "\", \"" + message + "\")")
     get_message_db().commit()
     get_message_db().close()
 
 def random_messages(n):
     cursor = get_message_db().cursor()
-    random_messages = cursor.execute("SELECT * FROM messages ORDER BY RANDOM() LIMIT " + str(n))
+    cursor.execute("SELECT * FROM messages ORDER BY RANDOM() LIMIT " + str(n))
+    random_messages = cursor.fetchall()
+    print(random_messages)
     get_message_db().close()
     return random_messages
 
@@ -31,12 +34,12 @@ def main():
 
 @app.route("/submit/", methods = ["POST", "GET"])
 def submit():
-    if request.method == "POST":
+    if request.method == "GET":
         return render_template("submit.html")
     else:
         try:
             insert_message(request)
-            return render_template("submit.html")
+            return render_template("submit.html", thanks = True)
         except:
             return render_template("submit.html")
 

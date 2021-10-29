@@ -4,6 +4,14 @@
   <h1>{% block title %}Some cool messages{% endblock %}</h1>
 {% endblock %}
 
-{% if random_messages %}
-{{random_messages}}
-{% endif %}
+{% block content %}
+  {% if random_messages %}
+    {% for tuple in random_messages %}
+    <br>
+    {{tuple[2]}}
+    <br>
+    - <i>{{tuple[1]}}</i>
+    <br>
+    {% endfor %}
+  {% endif %}
+{% endblock %}
