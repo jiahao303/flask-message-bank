@@ -24,7 +24,6 @@ def random_messages(n):
     cursor = get_message_db().cursor()
     cursor.execute("SELECT * FROM messages ORDER BY RANDOM() LIMIT " + str(n))
     random_messages = cursor.fetchall()
-    print(random_messages)
     get_message_db().close()
     return random_messages
 
